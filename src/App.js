@@ -11,16 +11,25 @@ class App extends Component {
     totalScore: 0,
     score: 0,
   }
-  
-  calculateScore = () => {
 
-    if (this.state.score === 12) {
-      this.setState({ totalScore: this.state.totalScore + this.state.score });
-      this.setState({ score: 0 })
-    } else {
-      this.setState({ score: this.state.score + 1 });
+  beenClicked = id => {
+
+    if (this.state.characters.clicked === false) {
+      if (this.state.score === 12) {
+        this.setState({ totalScore: this.state.totalScore + this.state.score });
+        this.setState({ score: 0 });
+        alert("You Win!");
+      } else {
+        this.setState({ score: this.state.score + 1 });
+      }
+    } else if (this.state.characters.clicked === true) {
+      alert("Game Over!")  
     }
-    
+
+    this.setState({
+      characters: this.state.characters.clicked = true
+    });
+
     this.randomizeCharacters(characters);
   };
 
@@ -39,8 +48,10 @@ class App extends Component {
         {this.state.characters.map(character => (
           <CharacterCard
           id={character.id}
+          key={character.id}
           image={character.image}
-          calculateScore={this.calculateScore}
+          clicked={character.clicked}
+          beenClicked={this.beenClicked}
         />
         ))}
       </Wrapper>

@@ -6,7 +6,7 @@ function Title(props) {
       <div className="jumbotron">
         <h1>MARVEL CLICKY GAME</h1>
         <br></ br>
-        <p>Click and Image To Get Started</p>
+        <p>Click an Image To Get Started</p>
         <p>{props.children}</p>
       </div>
     );
