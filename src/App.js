@@ -10,20 +10,17 @@ class App extends Component {
     characters,
     totalScore: 0,
     score: 0,
-    count: 0
   }
   
   calculateScore = () => {
-    this.setState({ count: this.state.count + 1 });
 
-    if (this.state.count === 2 || this.state.score === 12) {
-      this.setState({ count: 0 });
+    if (this.state.score === 12) {
       this.setState({ totalScore: this.state.totalScore + this.state.score });
       this.setState({ score: 0 })
     } else {
       this.setState({ score: this.state.score + 1 });
     }
-
+    
     this.randomizeCharacters(characters);
   };
 
