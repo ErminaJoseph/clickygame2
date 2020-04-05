@@ -9,30 +9,44 @@ class App extends Component {
   state = {
     characters,
     totalScore: 0,
-    score: 0,
+    score: 0
   }
 
+  
   beenClicked = id => {
 
-    if (this.state.characters.clicked === false) {
-      if (this.state.score === 12) {
-        this.setState({ totalScore: this.state.totalScore + this.state.score });
-        this.setState({ score: 0 });
-        alert("You Win!");
-      } else {
-        this.setState({ score: this.state.score + 1 });
-      }
-    } else if (this.state.characters.clicked === true) {
-      alert("Game Over!")  
-    }
-
-    this.setState({
-      characters: this.state.characters.clicked = true
+    const characters = this.state.characters.map(character => {
+      const updateCharacters = character; 
+        if (updateCharacters.id === id) {
+          if (updateCharacters.clicked === false) {
+            this.setState({ score: this.state.score + 1 });
+            updateCharacters.clicked = true;
+            if (this.state.score === 11) {
+              alert("You Win!");
+              this.setState({ totalScore: this.state.totalScore + this.state.score + 1});
+              this.setState({ score: 0 });
+              this.setState({ character: this.state.characters.clicked = false});
+              this.state.characters.clicked = false;
+            }
+          } else if (updateCharacters.clicked === true) {
+            alert("Game Over!");
+            this.state.characters.clicked = false;
+            this.setState({ totalScore: this.state.totalScore + this.state.score })
+            this.setState({ score: 0 });
+          }
+        }
+      return updateCharacters;
     });
-
+    
     this.randomizeCharacters(characters);
-  };
 
+    this.setState({ characters });
+
+    console.log(this.state.characters);
+    
+  };
+ 
+ 
   randomizeCharacters = a => {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

@@ -6,7 +6,7 @@ function CharacterCard(props) {
         <div className = "container">
             <div className = "card">
                 <div className = "img-container">
-                    <img src={props.image} onClick={() => props.beenClicked()}></img>
+                    <img src={props.image} onClick={() => props.beenClicked(props.id)}></img>
                 </div>
             </div>
         </div>
